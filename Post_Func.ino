@@ -1,14 +1,14 @@
   void PostDataFunc()
   {
-    //Serial.println("Entered in Func");
+    Serial.println("Post Sent");
 //    // if you get a connection, report back via serial:
       if (client.connect(server, 80))
       {
-        Serial.print("connected to ");
-        Serial.println(client.remoteIP());
+        //Serial.print("connected to ");
+        //Serial.println(client.remoteIP());
         // Make a HTTP POST request:
         client.println("POST "+UrlPath+" HTTP/1.1");
-        Serial.println("POST "+UrlPath);
+        //Serial.println("POST "+UrlPath);
         client.println("Host: apps.capsonic.com");
         client.println("Connection: close");
         client.println("Content-Type: application/json");    

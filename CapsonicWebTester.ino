@@ -45,7 +45,7 @@ const int ledPin = 13;      // the number of the LED pin
 // Variables will change:
 int ledState = HIGH;         // the current state of the output pin
 int buttonState;             // the current reading from the input pin
-int lastButtonState = LOW;   // the previous reading from the input pin
+int lastButtonState = HIGH;   // the previous reading from the input pin
 
 // the following variables are unsigned longs because the time, measured in
 // milliseconds, will quickly become a bigger number than can be stored in an int.
@@ -53,10 +53,15 @@ unsigned long lastDebounceTime = 0;  // the last time the output pin was toggled
 unsigned long debounceDelay = 50;    // the debounce time; increase if the output flickers
 ////////////////////////////////////////////////////////////////////
 
+String inputString = "";         // a String to hold incoming data
+bool stringComplete = false;  // whether the string is complete
+
+
 void setup() {
   StartFunc(); // SetUps Serial Com 
-  delay(1000); // 1 Sec to boot the Thernet shield
+  delay(1000); // 1 Sec to boot the Ethernet shield
   SetUpEthernetShield(); //SetUps Ethernet Shield
+  inputString.reserve(200);
   //PostDataFunc(); //Post Data to the server
   //beginMicros = micros();
 ///////////////////////////////////////////////////
@@ -73,6 +78,13 @@ void setup() {
 void loop() {
   
 PostTrigger();
+
+if (stringComplete) {
+    Serial.println(inputString);
+    // clear the string:
+    inputString = "";
+    stringComplete = false;
+  }
 
 //ShowResults();
 //  
