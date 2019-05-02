@@ -27,24 +27,27 @@ EthernetClient client;
 // Variables to measure the speed
 unsigned long beginMicros, endMicros;
 unsigned long byteCount = 0;
-bool printWebData = true;  // set to false for better speed measurement
+bool printWebData = false;  // set to false for better speed measurement
 
 String OP="Ard-01";
 String Value="11111";
 String Status="Test";
+int PartsProd=0;
 
-String PostData = "{\"OP\": \""+OP+"\", \"Value\": "+Value+", \"Status\": \""+Status+"\"}";
+String PostData = "{\"OP\": \""+OP+"\", \"Value\": "+Value+", \"Status\": \""+Status+"\",\"PartsProduced\": "+PartsProd+"}";
+//String PostData = "{\"OP\": \""+OP+"\", \"Value\": "+Value+", \"Status\": \""+Status+"\"}";
 String UrlPath_q="/Production/Sample?OP="+OP+"&Value="+Value+"&Status="+Status;
 String UrlPath="/Production/Sample";
 
 ///////////////////////////////////////////////////////////////////////////
 // constants won't change. They're used here to set pin numbers:
 const int buttonPin = 2;    // the number of the pushbutton pin
-const int ledPin = 13;      // the number of the LED pin
+const int ledPin = 12;      // the number of the LED pin
+const int ConLed = 12;      // the number of the LED pin
 
 // Variables will change:
 int ledState = HIGH;         // the current state of the output pin
-int buttonState;             // the current reading from the input pin
+int buttonState= HIGH;             // the current reading from the input pin
 int lastButtonState = HIGH;   // the previous reading from the input pin
 
 // the following variables are unsigned longs because the time, measured in
@@ -58,12 +61,7 @@ bool stringComplete = false;  // whether the string is complete
 
 
 void setup() {
-  StartFunc(); // SetUps Serial Com 
-  delay(1000); // 1 Sec to boot the Ethernet shield
-  SetUpEthernetShield(); //SetUps Ethernet Shield
-  inputString.reserve(200);
-  //PostDataFunc(); //Post Data to the server
-  //beginMicros = micros();
+
 ///////////////////////////////////////////////////
 
   pinMode(buttonPin, INPUT);
@@ -73,12 +71,21 @@ void setup() {
   digitalWrite(ledPin, ledState);
 
 ///////////////////////////////////////////////////
+  
+  StartFunc(); // SetUps Serial Com 
+  delay(1000); // 1 Sec to boot the Ethernet shield
+  SetUpEthernetShield(); //SetUps Ethernet Shield
+  inputString.reserve(200);
+  //PostDataFunc(); //Post Data to the server
+  //beginMicros = micros();
 }
 
 void loop() {
-  
-PostTrigger();
 
+//    PostDataFunc();
+//    delay(1);
+    
+    PostTrigger();
 if (stringComplete) {
     Serial.println(inputString);
     // clear the string:

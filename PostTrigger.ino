@@ -26,7 +26,10 @@ void PostTrigger()
       // only toggle the LED if the new button state is HIGH
       if (buttonState == HIGH) {
         ledState = !ledState;
+        
+        //Serial.println("");
         PostDataFunc();
+        //ShowResults();
       }
     }
   }
