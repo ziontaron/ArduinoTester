@@ -1,6 +1,6 @@
   void PostDataFunc()
   {
-    PartsProd++;
+    //PartsProd++;
      PostData = "{\"OP\": \""+OP+"\", \"Value\": "+Value+", \"Status\": \""+Status+"\",\"PartsProduced\": "+PartsProd+"}";
       Serial.println("Post Sent");
 //    // if you get a connection, report back via serial:

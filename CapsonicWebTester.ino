@@ -83,14 +83,16 @@ void setup() {
 void loop() {
 
 //    PostDataFunc();
-//    delay(1);
+//    delay(5);
     
     PostTrigger();
 if (stringComplete) {
-    Serial.println(inputString);
+    Serial.print(inputString);
     // clear the string:
     inputString = "";
     stringComplete = false;
+    
+    CommandParser();
   }
 
 //ShowResults();
