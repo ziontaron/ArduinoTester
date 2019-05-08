@@ -32,15 +32,13 @@ void SerialRead()
     
   if (stringComplete)   
     {
-      Serial.print(inputString);
+      Serial.print(inputString + "from SerialCfg");
       
       //split_message(inputString);
-      
+      CommandParser(inputString);
       // clear the string:
       inputString = "";
-      stringComplete = false;
-
-      
+      stringComplete = false;      
     }
   }
   

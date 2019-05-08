@@ -19,7 +19,7 @@
         client.println(PostData.length());
         client.println();
         client.println(PostData);
-        Serial.println(PostData);
+        //Serial.println(PostData);
       }
       else
       {

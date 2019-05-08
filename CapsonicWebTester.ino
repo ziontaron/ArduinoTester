@@ -29,10 +29,19 @@ unsigned long beginMicros, endMicros;
 unsigned long byteCount = 0;
 bool printWebData = false;  // set to false for better speed measurement
 
-String OP="Ard-01";
+String Device="Ard-01";
+String OP="Mold 74";
 String Value="11111";
 String Status="Test";
-int PartsProd=0;
+
+/////CONFIG FLAGS///////
+
+bool ChgDevName=false;
+bool ChgOPName=false;
+bool CfgMode=false;
+bool PartsPCycle=false;
+String PartsProd="1";
+////////////////////////
 
 String PostData = "{\"OP\": \""+OP+"\", \"Value\": "+Value+", \"Status\": \""+Status+"\",\"PartsProduced\": "+PartsProd+"}";
 //String PostData = "{\"OP\": \""+OP+"\", \"Value\": "+Value+", \"Status\": \""+Status+"\"}";
@@ -87,12 +96,12 @@ void loop() {
     
     PostTrigger();
 if (stringComplete) {
-    Serial.print(inputString);
-    // clear the string:
+    //Serial.print(inputString);
+    // clear the string:    
+      CommandParser(inputString);
     inputString = "";
     stringComplete = false;
     
-    CommandParser();
   }
 
 //ShowResults();

@@ -5,8 +5,19 @@ char *Words[MAX_WORLD_COUNT];
 char *StringToParse;
 
 
-void CommandParser()
+void CommandParser(String cmd)
 {  
+      //Serial.print("From CommandParser: "+cmd);
+      char charBuf[50];
+      cmd.toCharArray(charBuf, 50);
+      byte words= split_message(charBuf);
+      //print_message(words);
+      
+      for (byte sms_block = 0; sms_block < words; sms_block++) 
+      {
+          String W=Words[sms_block];
+          CommandDefinition(W);
+      }
   }
 
 ////////// ////////// ////////// ////////// ////////// ////////// //////////
