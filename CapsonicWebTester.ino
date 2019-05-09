@@ -1,5 +1,6 @@
 #include <SPI.h>
 #include <Ethernet.h>
+#include <EEPROM.h>
 
 ////////FUNCION FILES//////////////////////
 
@@ -33,6 +34,7 @@ String Device="Ard-01";
 String OP="Mold 74";
 String Value="11111";
 String Status="Test";
+String PartsProd="1";
 
 /////CONFIG FLAGS///////
 
@@ -40,7 +42,6 @@ bool ChgDevName=false;
 bool ChgOPName=false;
 bool CfgMode=false;
 bool PartsPCycle=false;
-String PartsProd="1";
 ////////////////////////
 
 String PostData = "{\"OP\": \""+OP+"\", \"Value\": "+Value+", \"Status\": \""+Status+"\",\"PartsProduced\": "+PartsProd+"}";
@@ -96,7 +97,7 @@ void loop() {
     
     PostTrigger();
 if (stringComplete) {
-    //Serial.print(inputString);
+    Serial.print(inputString);
     // clear the string:    
       CommandParser(inputString);
     inputString = "";

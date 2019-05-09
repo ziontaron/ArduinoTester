@@ -148,4 +148,15 @@ void CommandDefinition(String CMD)
      return;
   }
 //////////////////////////////////////////////////////////////////////
+  if(CMD=="SAVE_CFG" || CMD=="SAVE_CFG\n")
+  {
+      CFG_SAVE();  
+      Serial.println("OK");
+  }
+//////////////////////////////////////////////////////////////////////
+  if(CMD=="READ_CFG" || CMD=="READ_CFG\n")
+  {
+      CFG_LOAD();  
+      Serial.println("OK");
+  }
 }
