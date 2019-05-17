@@ -1,7 +1,8 @@
   void PostDataFunc()
   {
     //PartsProd++;
-     PostData = "{\"OP\": \""+OP+"\", \"Value\": "+Value+", \"Status\": \""+Status+"\",\"PartsProduced\": "+PartsProd+"}";
+//     PostData = "{\"OP\": \""+OP+"\", \"Value\": "+Value+", \"Status\": \""+Status+"\",\"PartsProduced\": "+PartsProd+"}";
+     PostData = "{\"OP\": \""+OP+"\", \"Value\": "+Value+", \"Status\": \""+Device+"\",\"PartsProduced\": "+PartsProd+"}";
       Serial.println("Post Sent");
 //    // if you get a connection, report back via serial:
       if (client.connect(server, 80))

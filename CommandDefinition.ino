@@ -34,13 +34,13 @@ void CommandDefinition(String CMD)
   if(CMD=="CFGMODE_ON" || CMD=="CFGMODE_ON\n")
   {
     CfgMode=true;    
-    Serial.println("OK");
+    Serial.println("CFGMODE_ON OK");
   }
 /////////////////////////////////////////////////////////////    
   if(CMD=="CFGMODE_OFF" || CMD=="CFGMODE_OFF\n")
   {
     CfgMode=false;   
-    Serial.println("OK");
+    Serial.println("CFGMODE_OFF OK");
      return;
   }
 //////////////////////////////////////////////////////////////  
@@ -55,11 +55,11 @@ void CommandDefinition(String CMD)
     if(CfgMode)
     {
       ChgDevName=true;   
-      Serial.println("OK");
+      Serial.println("DEV_NAME_EDIT OK");
     }
     else
     {
-      Serial.println("ERROR");
+      Serial.println("DEV_NAME_EDIT ERROR");
     }
      return;
   }
@@ -69,11 +69,11 @@ void CommandDefinition(String CMD)
     if(CMD!="" && CMD!="\n")
     {
       Device=CMD;   
-      Serial.println("OK"); 
+      Serial.println("NEW DEVICE NAME: "+CMD+" OK"); 
     }       
     else
     {
-      Serial.println("ERROR"); 
+      Serial.println("NEW DEVICE NAME: "+CMD+" ERROR"); 
     }
       ChgDevName=false;
      return;
@@ -89,11 +89,11 @@ void CommandDefinition(String CMD)
     if(CfgMode)
     {
       ChgOPName=true;   
-      Serial.println("OK");
+      Serial.println("OP_NAME_EDIT OK");
     }
     else
     {
-      Serial.println("ERROR");
+      Serial.println("OP_NAME_EDIT ERROR");
     }
      return;
   }
@@ -103,11 +103,11 @@ void CommandDefinition(String CMD)
     if(CMD!="" && CMD!="\n")
     {
       OP=CMD;       
-      Serial.println("OK");  
+      Serial.println("NEW OP: "+CMD+" OK");  
     }  
     else
     {
-      Serial.println("ERROR"); 
+      Serial.println("NEW OP: "+CMD+" ERROR"); 
     }
       ChgOPName=false;
      return;
@@ -124,11 +124,11 @@ void CommandDefinition(String CMD)
     if(CfgMode)
     {
       PartsPCycle=true;   
-      Serial.println("OK");
+      Serial.println("PART_PCYCLE_EDIT OK");
     }
     else
     {
-      Serial.println("ERROR");
+      Serial.println("PART_PCYCLE_EDIT ERROR");
     }
      return;
   }
@@ -144,19 +144,25 @@ void CommandDefinition(String CMD)
     {
       Serial.println("ERROR"); 
     }
-      PartsPCycle=false;
+     PartsPCycle=false;
      return;
   }
 //////////////////////////////////////////////////////////////////////
   if(CMD=="SAVE_CFG" || CMD=="SAVE_CFG\n")
-  {
+  {if(CfgMode)
+    { 
       CFG_SAVE();  
-      Serial.println("OK");
+      Serial.println("SAVE_CFG OK");
+    }
+    else
+    {
+      Serial.println("SAVE_CFG ERROR");
+    }
   }
 //////////////////////////////////////////////////////////////////////
   if(CMD=="READ_CFG" || CMD=="READ_CFG\n")
   {
       CFG_LOAD();  
-      Serial.println("OK");
+      Serial.println("READ_CFG OK");
   }
 }

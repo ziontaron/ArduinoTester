@@ -88,6 +88,9 @@ void setup() {
   inputString.reserve(200);
   //PostDataFunc(); //Post Data to the server
   //beginMicros = micros();
+  delay(10);
+  //CFG_LOAD();
+  CommandDefinition("CFG_PRINT");
 }
 
 void loop() {
@@ -97,7 +100,7 @@ void loop() {
     
     PostTrigger();
 if (stringComplete) {
-    Serial.print(inputString);
+    //Serial.print(inputString);
     // clear the string:    
       CommandParser(inputString);
     inputString = "";
